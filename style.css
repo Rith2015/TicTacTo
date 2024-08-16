@@ -16,12 +16,13 @@ body {
     font-family: 'Arial', sans-serif;
     color: #333;
     position: relative; /* Add relative positioning */
+    padding: 10px; /* Add padding for small screens */
 }
 
 /* Score Section */
 #ScoreB {
     position: absolute;
-    top: 20px;
+    top: 20%;
     right: 5%; /* Align the score section to the right side of the page */
     text-align: right;
     color: #fff;
@@ -37,7 +38,6 @@ body {
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-align: center;
-    right: 200%;
 }
 
 /* Buttons Grid */
@@ -116,4 +116,58 @@ button#new-game:hover {
     background-color: #4CAF50 !important;
     color: #fff !important;
     transform: scale(1.2) !important;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    /* Adjust buttons size for smaller screens */
+    button {
+        width: 70px;
+        height: 70px;
+        font-size: 24px;
+    }
+
+    /* Adjust grid layout */
+    #buttons {
+        grid-template-columns: repeat(3, 70px); /* Adjust to fit smaller screen width */
+        gap: 8px;
+    }
+
+    /* Adjust score position */
+    #ScoreB {
+        top: 10%;
+        right: 2%;
+        font-size: 18px;
+    }
+
+    /* Adjust display text */
+    #display {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    button {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    #buttons {
+        grid-template-columns: repeat(4, 60px); /* Adjust to fit smaller screen width */
+        gap: 6px;
+    }
+
+    /* Adjust score position */
+    #ScoreB {
+        top: 10%;
+        right: 2%;
+        font-size: 16px;
+    }
+
+    /* Adjust display text */
+    #display {
+        font-size: 18px;
+    }
 }
