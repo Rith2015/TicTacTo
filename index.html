@@ -13,106 +13,114 @@
         WinX <button id="WX">0</button><br>
         WinO <button id="WO">0</button><br>
     </div>
-    <div><button onclick="Clear()" style="width: 75%;">New Game</button> <br>
-    <div id="display"></div>
-    <div onclick="play()" id="buttons">
-        <button id="btn1">-</button>
-        <button id="btn2">-</button>
-        <button id="btn3">-</button><br>
-        <button id="btn4">-</button>
-        <button id="btn5">-</button>
-        <button id="btn6">-</button><br>
-        <button id="btn7">-</button>
-        <button id="btn8">-</button>
-        <button id="btn9">-</button><br>
-    </div>
-    <script>
-        let winX = 0
-        let wino = 0
-        let XTurn = false
-        let gameOver = false;
+    <div><button onclick="NewGame()" style="width: 75%;">New Game</button> <br>
+        <div id="display"></div>
+        <div onclick="play()" id="buttons">
+            <button id="btn1">-</button>
+            <button id="btn2">-</button>
+            <button id="btn3">-</button><br>
+            <button id="btn4">-</button>
+            <button id="btn5">-</button>
+            <button id="btn6">-</button><br>
+            <button id="btn7">-</button>
+            <button id="btn8">-</button>
+            <button id="btn9">-</button><br>
+        </div>
+        <script>
+            let winX = 0
+            let wino = 0
+            let XTurn = false
+            let gameOver = false;
 
-        function play() {
-            if (event.target.innerHTML === '-') {
-                display.innerHTML = `Player ${XTurn ? 'O' : 'X'} Turn`;
-                event.target.innerHTML = XTurn ? 'X' : 'O';
-                XTurn = !XTurn;
-                CheackWin();
+            function play() {
+                if (event.target.innerHTML === '-') {
+                    display.innerHTML = `Player ${XTurn ? 'O' : 'X'} Turn`;
+                    event.target.innerHTML = XTurn ? 'X' : 'O';
+                    XTurn = !XTurn;
+                    CheackWin();
+                }
             }
-        }
-        function Clear() {
-            document.getElementById('btn1').innerHTML = "-",
-                document.getElementById('btn2').innerHTML = "-",
-                document.getElementById('btn3').innerHTML = "-",
-                document.getElementById('btn4').innerHTML = "-",
-                document.getElementById('btn5').innerHTML = "-",
-                document.getElementById('btn6').innerHTML = "-",
-                document.getElementById('btn7').innerHTML = "-",
-                document.getElementById('btn8').innerHTML = "-",
-                document.getElementById('btn9').innerHTML = "-",
-                document.getElementById('WX').innerHTML = "0",
-                document.getElementById('WO').innerHTML = "0"
-
-        }
-
-        function ClearScores() {
-            winX = 0;
-            wino = 0;
-            document.getElementById('WX').innerHTML = winX;
-            document.getElementById('WO').innerHTML = wino;
-            Clear();
-        }
-        function CheackWin() {
-            const winner = XTurn ? 'O' : 'X';
-            const btn1 = document.getElementById('btn1').innerHTML;
-            const btn2 = document.getElementById('btn2').innerHTML;
-            const btn3 = document.getElementById('btn3').innerHTML;
-            const btn4 = document.getElementById('btn4').innerHTML;
-            const btn5 = document.getElementById('btn5').innerHTML;
-            const btn6 = document.getElementById('btn6').innerHTML;
-            const btn7 = document.getElementById('btn7').innerHTML;
-            const btn8 = document.getElementById('btn8').innerHTML;
-            const btn9 = document.getElementById('btn9').innerHTML;
-            if (btn1 === btn2 && btn2 === btn3 && btn1 !== '-') alert(`${btn1} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn4 === btn5 && btn5 === btn6 && btn4 !== "-") alert(`${btn4} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn7 === btn8 && btn8 === btn9 && btn7 !== "-") alert(`${btn7} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn1 === btn4 && btn4 === btn7 && btn1 !== "-") alert(`${btn1} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn2 === btn5 && btn5 === btn8 && btn2 !== "-") alert(`${btn2} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn3 === btn6 && btn6 === btn9 && btn3 !== "-") alert(`${btn3} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn1 === btn5 && btn5 === btn9 && btn1 !== "-") alert(`${btn1} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            if (btn3 === btn5 && btn5 === btn7 && btn3 !== "-") alert(`${btn3} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
-            else Drew();
-
-        }
-        function Drew() {
-            const buttons = [
-                document.getElementById('btn1').innerHTML,
-                document.getElementById('btn2').innerHTML,
-                document.getElementById('btn3').innerHTML,
-                document.getElementById('btn4').innerHTML,
-                document.getElementById('btn5').innerHTML,
-                document.getElementById('btn6').innerHTML,
-                document.getElementById('btn7').innerHTML,
-                document.getElementById('btn8').innerHTML,
-                document.getElementById('btn9').innerHTML
-            ];
-
-            if (buttons.every(btn => btn !== '-')) {
-                alert("draw!")+Clear();
+            function NewGame() {
+                document.getElementById('btn1').innerHTML = "-",
+                    document.getElementById('btn2').innerHTML = "-",
+                    document.getElementById('btn3').innerHTML = "-",
+                    document.getElementById('btn4').innerHTML = "-",
+                    document.getElementById('btn5').innerHTML = "-",
+                    document.getElementById('btn6').innerHTML = "-",
+                    document.getElementById('btn7').innerHTML = "-",
+                    document.getElementById('btn8').innerHTML = "-",
+                    document.getElementById('btn9').innerHTML = "-",
+                    ClearScores();
             }
-        }
-        function updateScore(winner) {
-            if (winner === 'X') {
-                winX += 1;
+            function Clear() {
+                document.getElementById('btn1').innerHTML = "-",
+                    document.getElementById('btn2').innerHTML = "-",
+                    document.getElementById('btn3').innerHTML = "-",
+                    document.getElementById('btn4').innerHTML = "-",
+                    document.getElementById('btn5').innerHTML = "-",
+                    document.getElementById('btn6').innerHTML = "-",
+                    document.getElementById('btn7').innerHTML = "-",
+                    document.getElementById('btn8').innerHTML = "-",
+                    document.getElementById('btn9').innerHTML = "-"
+            }
+
+            function ClearScores() {
+                winX = 0;
+                wino = 0;
                 document.getElementById('WX').innerHTML = winX;
-            } else {
-                wino += 1;
                 document.getElementById('WO').innerHTML = wino;
             }
-        }
+            function CheackWin() {
+                const winner = XTurn ? 'O' : 'X';
+                const btn1 = document.getElementById('btn1').innerHTML;
+                const btn2 = document.getElementById('btn2').innerHTML;
+                const btn3 = document.getElementById('btn3').innerHTML;
+                const btn4 = document.getElementById('btn4').innerHTML;
+                const btn5 = document.getElementById('btn5').innerHTML;
+                const btn6 = document.getElementById('btn6').innerHTML;
+                const btn7 = document.getElementById('btn7').innerHTML;
+                const btn8 = document.getElementById('btn8').innerHTML;
+                const btn9 = document.getElementById('btn9').innerHTML;
+                if (btn1 === btn2 && btn2 === btn3 && btn1 !== '-') alert(`${btn1} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
+                if (btn4 === btn5 && btn5 === btn6 && btn4 !== "-") alert(`${btn4} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn4);
+                if (btn7 === btn8 && btn8 === btn9 && btn7 !== "-") alert(`${btn7} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn7);
+                if (btn1 === btn4 && btn4 === btn7 && btn1 !== "-") alert(`${btn1} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
+                if (btn2 === btn5 && btn5 === btn8 && btn2 !== "-") alert(`${btn2} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn2);
+                if (btn3 === btn6 && btn6 === btn9 && btn3 !== "-") alert(`${btn3} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn3);
+                if (btn1 === btn5 && btn5 === btn9 && btn1 !== "-") alert(`${btn1} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn1);
+                if (btn3 === btn5 && btn5 === btn7 && btn3 !== "-") alert(`${btn3} Wins!`) + alert(`Player ${XTurn ? 'X' : 'O'} lost!`) + Clear() + updateScore(btn3);
+                else Drew();
+
+            }
+            function Drew() {
+                const buttons = [
+                    document.getElementById('btn1').innerHTML,
+                    document.getElementById('btn2').innerHTML,
+                    document.getElementById('btn3').innerHTML,
+                    document.getElementById('btn4').innerHTML,
+                    document.getElementById('btn5').innerHTML,
+                    document.getElementById('btn6').innerHTML,
+                    document.getElementById('btn7').innerHTML,
+                    document.getElementById('btn8').innerHTML,
+                    document.getElementById('btn9').innerHTML
+                ];
+
+                if (buttons.every(btn => btn !== '-')) {
+                    alert("draw!") + Clear();
+                }
+            }
+            function updateScore(winner) {
+                if (winner === 'X') {
+                    winX += 1;
+                    document.getElementById('WX').innerHTML = winX;
+                } else {
+                    wino += 1;
+                    document.getElementById('WO').innerHTML = wino;
+                }
+            }
 
 
-    </script>
+        </script>
 </body>
 
 </html>
