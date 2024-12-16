@@ -82,6 +82,14 @@ This project implements a **Tic-Tac-Toe** game using **HTML**, **CSS**, and **Ja
 
 ---
 
+## Enhancements
+
+You can further improve the game by:
+- Adding a **CSS grid** for better layout and styling.
+- Highlighting the winning combination when a player wins.
+- Adding AI for single-player gameplay.
+
+---
 
 ## Installation
 
